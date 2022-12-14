@@ -4,6 +4,7 @@
 
 void ui_PrintHeader(){
     printf("Welcome to the Practiser's Hunt\n");
+    printf("v0.0.1\n");
     printf("(C) 2022 Jia Jun Ngeo\n");
     printf("Hit ? for help\n\n");
 }
@@ -26,4 +27,12 @@ int ui_getInput(STRING** ptr){
     string_RawTrimInplace(buf);
     *ptr=string_New(buf);
     return 1;
+}
+
+void ui_PrintHelp(){
+    printf("Work in progress\n");
+	printf("Type quit to end the game\n");
+    printf("\nAvailable commands:\n");
+    printf("look [target]\t:Look for something. Targets are as below:\n");
+    printf("\t\taround: For the surrounding objects\n");
 }

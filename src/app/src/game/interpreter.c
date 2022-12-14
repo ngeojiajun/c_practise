@@ -1,6 +1,8 @@
 #include "../../include/game/interpreter.h"
 #include "../../include/game/types.h"
 #include "../../include/game/definitions.h"
+#include "../../include/game/actions.h"
+#include "../../include/ui/ui.h"
 #include <stdio.h>
 
 int game_InterpretCommand(STRING* cmd, PLAYER_CONTEXT* ctx)
@@ -22,10 +24,17 @@ int game_InterpretCommand(STRING* cmd, PLAYER_CONTEXT* ctx)
 			ctx->pos.x,
 			ctx->pos.y);
 	}
+	else if(string_RawStringBeginsInsensitive(cmd_string,"look ")){
+		//create a new string here with the command removed
+		STRING* params=string_Slice(cmd,5,cmd->length);
+		//strip the surrounding space
+		string_TrimInplace(params);
+		action_Look(ctx,params);
+		string_Free(params);
+	}
 	else if (string_RawEqualsInsensitive(cmd_string, "?"))
 	{
-		printf("Work in progress\n");
-		printf("Type quit to end the game\n");
+		ui_PrintHelp();
 	}
 	else
 	{

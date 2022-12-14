@@ -11,3 +11,7 @@ void ui_PrintHeader();
  * @param ptr the pointer to hold the object
 */
 int ui_getInput(STRING** ptr);
+/**
+ * Print out the help
+*/
+void ui_PrintHelp();
