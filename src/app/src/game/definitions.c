@@ -5,8 +5,8 @@
 
 OBJECT forest_object[] = { 
 	{
-		{"a","b"},
-		{10,10}
+		{"chest","A chest with shining coins"},
+		{5,5}
 	}
 };
 /**
@@ -19,7 +19,8 @@ extern LOCATION locations[] = {
 			"A dark forest"
 		},
 	 forest_object,
-	 sizeof(forest_object)/sizeof(OBJECT)
+	 sizeof(forest_object)/sizeof(OBJECT),
+	 {10,10}
 	}
 };
 extern const size_t location_length=sizeof(locations)/sizeof(LOCATION);

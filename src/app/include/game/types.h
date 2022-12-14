@@ -17,7 +17,7 @@ typedef struct _PLAYER_CTX
     /**
      * Inventories
      */
-    PROC_ARRAY *inventories;
+    PRAC_ARRAY *inventories;
 } PLAYER_CONTEXT;
 
 typedef struct _TAGGED_OBJECT
@@ -39,4 +39,5 @@ typedef struct{
     TAGGED_OBJECT base;
     OBJECT* objects;
     size_t object_length;
+    LOCATION_2D max_pos;
 } LOCATION;

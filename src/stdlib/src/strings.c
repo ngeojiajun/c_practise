@@ -106,3 +106,17 @@ void string_RawTrimInplace(char *ptr)
         ptr[length] = 0;
     }
 }
+int string_RawStringBeginsInsensitive(const char *a, const char *b)
+{
+    size_t length = PRAC_MIN(strlen(a),strlen(b));
+    const unsigned char *_a = a;
+    const unsigned char *_b = b;
+    for (int i = 0; i < length; i++)
+    {
+        if (tolower(_a[i]) != tolower(_b[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}

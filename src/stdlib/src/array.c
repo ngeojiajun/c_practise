@@ -1,12 +1,12 @@
 #include "array.h"
 #include <memory.h>
 
-PROC_ARRAY* array_New(size_t length){
-    PROC_ARRAY* return_val=malloc(sizeof(PROC_ARRAY));
+PRAC_ARRAY* array_New(size_t length){
+    PRAC_ARRAY* return_val=malloc(sizeof(PRAC_ARRAY));
     if(!return_val){
         return NULL;
     }
-    memset(return_val,0,sizeof(PROC_ARRAY));
+    memset(return_val,0,sizeof(PRAC_ARRAY));
     if(length){
         return_val->allocated=length;
         return_val->items=malloc(length*sizeof(void*));
@@ -17,7 +17,7 @@ PROC_ARRAY* array_New(size_t length){
     }
     return return_val;
 }
-void array_Push(PROC_ARRAY* arr,void* item){
+void array_Push(PRAC_ARRAY* arr,void* item){
     if(!arr){
         return;
     }
@@ -39,7 +39,7 @@ void array_Push(PROC_ARRAY* arr,void* item){
     //fill in the content
     arr->items[arr->filled++]=item;
 }
-void array_RemoveAt(PROC_ARRAY *arr, size_t idx,arrayItemRelease release){
+void array_RemoveAt(PRAC_ARRAY *arr, size_t idx,arrayItemRelease release){
     if(!arr||idx>=arr->filled){
         return;
     }
@@ -53,7 +53,7 @@ void array_RemoveAt(PROC_ARRAY *arr, size_t idx,arrayItemRelease release){
     memcpy(arr->items+idx,arr->items+idx+1,sizeof(void*)*copy_length);
     --arr->filled;
 }
-void array_Destroy(PROC_ARRAY* arr,arrayItemRelease release){
+void array_Destroy(PRAC_ARRAY* arr,arrayItemRelease release){
     if(!arr){
         return;
     }
