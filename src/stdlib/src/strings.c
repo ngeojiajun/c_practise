@@ -54,7 +54,7 @@ STRING *string_Slice(const STRING *base, size_t start, size_t end)
         return NULL;
     }
     memset(return_val->string, 0, return_val->length + 1);
-    strncpy(return_val->string, base->string, return_val->length);
+    strncpy(return_val->string, base->string + start, return_val->length);
     return return_val;
 }
 void string_Free(STRING *obj)
@@ -87,6 +87,10 @@ int string_RawEqualsInsensitive(const char *a, const char *b)
 void string_RawTrimInplace(char *ptr)
 {
     size_t length = strlen(ptr);
+    if (!length)
+    {
+        return;
+    }
     // trim away the space at end
     while (isspace(ptr[length - 1]))
     {
@@ -106,9 +110,38 @@ void string_RawTrimInplace(char *ptr)
         ptr[length] = 0;
     }
 }
+void string_TrimInplace(STRING *base)
+{
+    size_t length = base->length;
+    if (!length)
+    {
+        return;
+    }
+    char *ptr = base->string;
+    // trim away the space at end
+    while (isspace(ptr[length - 1]))
+    {
+        length--;
+    }
+    ptr[length] = 0;
+    size_t i = 0;
+    // trim away the space at front
+    while (isspace(ptr[i]))
+    {
+        i++;
+        length--;
+    }
+    if (i > 0)
+    {
+        memcpy(ptr, ptr + i, length);
+        ptr[length] = 0;
+    }
+    // update the length
+    base->length = length;
+}
 int string_RawStringBeginsInsensitive(const char *a, const char *b)
 {
-    size_t length = PRAC_MIN(strlen(a),strlen(b));
+    size_t length = PRAC_MIN(strlen(a), strlen(b));
     const unsigned char *_a = a;
     const unsigned char *_b = b;
     for (int i = 0; i < length; i++)

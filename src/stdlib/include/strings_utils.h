@@ -36,6 +36,11 @@ int string_RawEqualsInsensitive(const char* a,const char* b);
 void string_RawTrimInplace(char* ptr);
 
 /**
+ * Trim the string given
+*/
+void string_TrimInplace(STRING* base);
+
+/**
  * Check is the string starts with another (insensitive)
 */
 int string_RawStringBeginsInsensitive(const char* a,const char*b);
