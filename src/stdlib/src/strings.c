@@ -153,3 +153,37 @@ int string_RawStringBeginsInsensitive(const char *a, const char *b)
     }
     return 1;
 }
+PRAC_ARRAY *string_Split(STRING *base, const char *separator)
+{
+    if (!base || !base->length || !base->string || !separator)
+    {
+        return NULL;
+    }
+    PRAC_ARRAY *return_val = array_New(1);
+    // inside a loop try to get the substring of the array
+    char *current = strstr(base->string, separator), *old = base->string;
+    size_t length = strlen(separator);
+    // get the position of the substring
+    while (current)
+    {
+        // try to get the substring
+        size_t start = old - base->string;
+        size_t substring_length = current - old;
+        STRING *substr = string_Slice(base, start, start+substring_length);
+        // push this into the array
+        array_Push(return_val, substr);
+        // swap the pointers
+        current += length;
+        old = current;
+        current = strstr(current, separator);
+    }
+    // push the last block
+    if ((unsigned)(old - (base->string)) < (base->length))
+    {
+        size_t start = old - base->string;
+        STRING *substr = string_Slice(base, start, length);
+        // push this into the array
+        array_Push(return_val, substr);
+    }
+    return return_val;
+}

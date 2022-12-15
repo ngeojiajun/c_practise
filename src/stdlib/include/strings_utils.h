@@ -1,5 +1,6 @@
 #pragma once
 #include <stdlib.h>
+#include "array.h"
 
 typedef struct _PRAC_STRING{
     char* string;
@@ -44,3 +45,11 @@ void string_TrimInplace(STRING* base);
  * Check is the string starts with another (insensitive)
 */
 int string_RawStringBeginsInsensitive(const char* a,const char*b);
+
+/**
+ * Split the string into array by the separator
+ * @param base the string to be split
+ * @param separator separator to use
+ * @returns the split array, use string_Free as the disposer
+*/
+PRAC_ARRAY* string_Split(STRING* base, const char* separator);
