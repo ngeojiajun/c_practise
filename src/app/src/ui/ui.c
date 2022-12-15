@@ -35,4 +35,6 @@ void ui_PrintHelp(){
     printf("\nAvailable commands:\n");
     printf("look [target]\t:Look for something. Targets are as below:\n");
     printf("\t\taround: For the surrounding objects\n");
+    printf("go [direction] [distance=1]\t:Go to specific direction. Valid directions:\n");
+    printf("\t\tnorth(n),south(s),west(w),east(e)\n");
 }
