@@ -31,10 +31,11 @@ void array_Push(PRAC_ARRAY* arr,void* item){
             if(!reallocated){
                 return;
             }
-            memcpy(realloc,arr->items,arr->allocated*sizeof(void*));
+            memcpy(reallocated,arr->items,arr->allocated*sizeof(void*));
             free(arr->items);
         }
         arr->allocated=target_size;
+        arr->items = reallocated;
     }
     //fill in the content
     arr->items[arr->filled++]=item;
