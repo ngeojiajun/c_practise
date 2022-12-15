@@ -4,9 +4,11 @@ src/ui/ui.c
 include/ui/ui.h
 
 src/game/interpreter.c 
+src/game/utils.c 
 src/game/definitions.c
 include/game/definitions.h
 include/game/interpreter.h 
+include/game/utils.h 
 include/game/types.h
 
 src/game/actions/look.c 
