@@ -5,14 +5,16 @@
 #include "../../include/ui/ui.h"
 #include <stdio.h>
 
-#define STRLEN(s) ( (sizeof(s)/sizeof(s[0])) - sizeof(s[0]) )
+#define STRLEN(s) ((sizeof(s) / sizeof(s[0])) - sizeof(s[0]))
 
-#define DEFINE_ACTION(command,handler) else if(string_RawStringBeginsInsensitive(cmd_string, command)){\
+#define DEFINE_ACTION(command, handler)                                   \
+	else if (string_RawStringBeginsInsensitive(cmd_string, command))      \
+	{                                                                     \
 		STRING *params = string_Slice(cmd, STRLEN(command), cmd->length); \
-		string_TrimInplace(params); \
-		handler(ctx, params); \
-		string_Free(params); \
-}
+		string_TrimInplace(params);                                       \
+		handler(ctx, params);                                             \
+		string_Free(params);                                              \
+	}
 
 int game_InterpretCommand(STRING *cmd, PLAYER_CONTEXT *ctx)
 {
@@ -34,8 +36,9 @@ int game_InterpretCommand(STRING *cmd, PLAYER_CONTEXT *ctx)
 			   ctx->pos.x,
 			   ctx->pos.y);
 	}
-	DEFINE_ACTION("look ",action_Look)
-	DEFINE_ACTION("go ",action_Go)
+	DEFINE_ACTION("look ", action_Look)
+	DEFINE_ACTION("go ", action_Go)
+	DEFINE_ACTION("inventory ", action_Inventory)
 	else if (string_RawEqualsInsensitive(cmd_string, "?"))
 	{
 		ui_PrintHelp();

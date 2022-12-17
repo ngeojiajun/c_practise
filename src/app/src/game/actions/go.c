@@ -13,8 +13,6 @@
     }                                                                                   \
     else
 
-#define MATCH_NOUN_2(ref, match1, match2) (string_RawEqualsInsensitive(ref, match1) || string_RawEqualsInsensitive(ref, match2))
-
 void checkAndMoveImpl(PLAYER_CONTEXT *ctx, LOCATION_2D pos)
 {
     LOCATION_2D effective_pos = utils_Location2DAdd(pos, ctx->pos);
@@ -48,12 +46,13 @@ void action_Go(PLAYER_CONTEXT *ctx, STRING *params)
 {
     // split the params into blocks
     PRAC_ARRAY *params_split = string_Split(params, " ");
-    STRING **ptr = (STRING **)params_split->items;
-    if (!params_split->filled || params_split->filled > 2)
+    if (!params_split || params_split->filled > 2)
     {
         printf("I have no idea on where you want to go?\n");
+        goto exit;
     }
-    else if (MATCH_NOUN_2(ptr[0]->string, "north", "n"))
+    STRING **ptr = (STRING **)params_split->items;
+    if (MATCH_NOUN_2(ptr[0]->string, "north", "n"))
     {
         TRY_PARSE_DISTANCE
         {
@@ -85,5 +84,10 @@ void action_Go(PLAYER_CONTEXT *ctx, STRING *params)
             checkAndMoveImpl(ctx, pos);
         }
     }
+    else
+    {
+        printf("I have no idea on where you want to go?\n");
+    }
+exit:
     array_Destroy(params_split, string_Free);
 }
