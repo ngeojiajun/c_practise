@@ -14,6 +14,10 @@ void action_Look(PLAYER_CONTEXT *ctx, STRING *params)
         for (int i = 0; i < location.object_length; i++)
         {
             OBJECT obj = lists[i];
+            if (!obj.valid)
+            {
+                continue;
+            }
             printf("%s (%s) at (%d,%d)",
                    obj.base.tag,
                    obj.base.description,
@@ -22,7 +26,8 @@ void action_Look(PLAYER_CONTEXT *ctx, STRING *params)
         }
         printf("\n\n");
     }
-    else{
+    else
+    {
         printf("I have no idea on what you are looking for.\n");
     }
 }

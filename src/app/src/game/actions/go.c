@@ -22,6 +22,7 @@ void checkAndMoveImpl(PLAYER_CONTEXT *ctx, LOCATION_2D pos)
     if (!utils_Location2DValidinLocation(&locations[ctx->mapid], effective_pos))
     {
         printf("Oops you went too far!!\n");
+        return;
     }
     // check the obstacles
     LOCATION location = locations[ctx->mapid];
@@ -29,6 +30,10 @@ void checkAndMoveImpl(PLAYER_CONTEXT *ctx, LOCATION_2D pos)
     for (int i = 0; i < location.object_length; i++)
     {
         OBJECT *obj = lists + i;
+        if (!obj->valid)
+        {
+            continue;
+        }
         if (!utils_Location2DCmp(effective_pos, obj->pos))
         {
             printf("Oops! Something is there! Use \"look around\" to get info!\n");

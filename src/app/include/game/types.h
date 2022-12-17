@@ -18,6 +18,7 @@ typedef struct _PLAYER_CTX
      * Inventories
      */
     PRAC_ARRAY *inventories;
+    int coins;
 } PLAYER_CONTEXT;
 
 typedef struct _TAGGED_OBJECT
@@ -26,18 +27,23 @@ typedef struct _TAGGED_OBJECT
     const char *description;
 } TAGGED_OBJECT;
 
+#define OBJECT_TYPE_CHEST 1
+
 typedef struct _OBJECT
 {
     TAGGED_OBJECT base;
     LOCATION_2D pos;
+    unsigned short type;
+    unsigned char valid;
 } OBJECT;
 
 /**
  * Locations -- Not for use by deserialization
  */
-typedef struct{
+typedef struct
+{
     TAGGED_OBJECT base;
-    OBJECT* objects;
+    OBJECT *objects;
     size_t object_length;
     LOCATION_2D max_pos;
 } LOCATION;
