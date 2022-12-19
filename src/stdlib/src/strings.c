@@ -169,7 +169,7 @@ PRAC_ARRAY *string_Split(STRING *base, const char *separator)
         // try to get the substring
         size_t start = old - base->string;
         size_t substring_length = current - old;
-        STRING *substr = string_Slice(base, start, start+substring_length);
+        STRING *substr = string_Slice(base, start, start + substring_length);
         // push this into the array
         array_Push(return_val, substr);
         // swap the pointers
@@ -181,7 +181,7 @@ PRAC_ARRAY *string_Split(STRING *base, const char *separator)
     if ((unsigned)(old - (base->string)) < (base->length))
     {
         size_t start = old - base->string;
-        STRING *substr = string_Slice(base, start, length);
+        STRING *substr = string_Slice(base, start, start + (base->length));
         // push this into the array
         array_Push(return_val, substr);
     }
