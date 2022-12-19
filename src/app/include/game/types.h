@@ -37,6 +37,12 @@ typedef struct _OBJECT
     unsigned char valid;
 } OBJECT;
 
+typedef struct _ITEM
+{
+    TAGGED_OBJECT base;
+    unsigned short type, quanntity;
+} ITEM;
+
 /**
  * Locations -- Not for use by deserialization
  */

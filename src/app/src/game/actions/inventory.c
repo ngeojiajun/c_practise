@@ -3,6 +3,26 @@
 #include "../../../include/game/definitions.h"
 #include <stdio.h>
 
+void printItems(PLAYER_CONTEXT *ctx)
+{
+    printf("\n---Items-----\n");
+    PRAC_ARRAY *inventories = ctx->inventories;
+    ITEM **items = (ITEM **)inventories->items;
+    if (!inventories->filled)
+    {
+        printf("Nothing inside the inventory\n");
+    }
+    else
+    {
+        for (int i = 0; i < inventories->filled; i++)
+        {
+            ITEM *entry = (items[i]);
+            printf("%s\t(%d)\n", entry->base.tag, entry->quanntity);
+        }
+    }
+    printf("\n");
+}
+
 void action_Inventory(PLAYER_CONTEXT *ctx, STRING *params)
 {
     // split the params into blocks
@@ -13,9 +33,18 @@ void action_Inventory(PLAYER_CONTEXT *ctx, STRING *params)
         goto exit;
     }
     STRING **ptr = (STRING **)params_split->items;
-    if (string_RawStringBeginsInsensitive(ptr[0]->string, "coin"))
+    if (string_RawEqualsInsensitive(ptr[0]->string, "coin"))
     {
         printf("You have %d coins\n", ctx->coins);
+    }
+    else if (string_RawEqualsInsensitive(ptr[0]->string, "reveal"))
+    {
+        printItems(ctx);
+    }
+    else if (string_RawEqualsInsensitive(ptr[0]->string, "reveal_all"))
+    {
+        printf("You have %d coins\n", ctx->coins);
+        printItems(ctx);
     }
     else
     {
