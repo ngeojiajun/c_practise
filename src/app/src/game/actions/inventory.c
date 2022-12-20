@@ -17,7 +17,7 @@ void printItems(PLAYER_CONTEXT *ctx)
         for (int i = 0; i < inventories->filled; i++)
         {
             ITEM *entry = (items[i]);
-            printf("%s\t(%d)\n", entry->base.tag, entry->quanntity);
+            printf("%s\t(%d)\n", entry->base.tag, entry->quantity);
         }
     }
     printf("\n");
