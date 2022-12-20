@@ -28,7 +28,7 @@ static void pickNearbyItem(PLAYER_CONTEXT *ctx, LOCATION_2D direction)
     }
 }
 
-void action_Go(PLAYER_CONTEXT *ctx, STRING *params)
+void action_Pick(PLAYER_CONTEXT *ctx, STRING *params)
 {
     // split the params into blocks
     PRAC_ARRAY *params_split = string_Split(params, " ");
