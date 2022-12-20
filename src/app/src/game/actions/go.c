@@ -25,18 +25,10 @@ void checkAndMoveImpl(PLAYER_CONTEXT *ctx, LOCATION_2D pos)
     // check the obstacles
     LOCATION location = locations[ctx->mapid];
     OBJECT *lists = location.objects;
-    for (int i = 0; i < location.object_length; i++)
+    if (utils_FindObjectAt(lists, location.object_length, effective_pos))
     {
-        OBJECT *obj = lists + i;
-        if (!obj->valid)
-        {
-            continue;
-        }
-        if (!utils_Location2DCmp(effective_pos, obj->pos))
-        {
-            printf("Oops! Something is there! Use \"look around\" to get info!\n");
-            return;
-        }
+        printf("Oops! Something is there! Use \"look around\" to get info!\n");
+        return;
     }
     ctx->pos = effective_pos;
     printf("You are now at (%d,%d)\n", ctx->pos.x, ctx->pos.y);

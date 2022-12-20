@@ -9,7 +9,7 @@ OBJECT *utils_FindObjectAt(OBJECT *list_head, size_t count, LOCATION_2D loc)
     for (int i = 0; i < count; i++)
     {
         OBJECT *ptr = list_head + count;
-        if (!utils_Location2DCmp(loc, ptr->pos))
+        if (ptr->valid && !utils_Location2DCmp(loc, ptr->pos))
         {
             return ptr;
         }
@@ -42,7 +42,7 @@ int utils_Location2DValidinLocation(LOCATION *loc, LOCATION_2D pos)
         return 0;
     }
     // check is either of the component is outside the boundary
-    if (pos.x>(loc->max_pos.x)||pos.y>(loc->max_pos.y))
+    if (pos.x > (loc->max_pos.x) || pos.y > (loc->max_pos.y))
     {
         return 0;
     }

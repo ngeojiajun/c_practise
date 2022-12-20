@@ -14,5 +14,6 @@ include/game/types.h
 src/game/actions/look.c 
 src/game/actions/inventory.c 
 src/game/actions/go.c 
+src/game/actions/pick.c 
 )
 target_link_libraries(app stdlib)

@@ -25,3 +25,15 @@ void action_Go(PLAYER_CONTEXT *ctx, STRING *params);
  * reveal_all - reveal all information
  */
 void action_Inventory(PLAYER_CONTEXT *ctx, STRING *params);
+/**
+ * pick command implementation
+ * ->pick a object near player
+ * format:
+ * pick [direction]
+ * directions:
+ * left/l
+ * right/r
+ * up/u
+ * down/d
+*/
+void action_Pick(PLAYER_CONTEXT *ctx,STRING* params);

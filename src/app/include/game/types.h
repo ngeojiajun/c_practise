@@ -40,7 +40,7 @@ typedef struct _OBJECT
 typedef struct _ITEM
 {
     TAGGED_OBJECT base;
-    unsigned short type, quanntity;
+    unsigned short type, quantity;
 } ITEM;
 
 /**
