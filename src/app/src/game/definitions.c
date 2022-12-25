@@ -3,11 +3,10 @@
  */
 #include "../../include/game/types.h"
 
-OBJECT forest_object[] = {
-	{{"chest", "A chest with shining coins"},
-	 {5, 5},
-	 OBJECT_TYPE_CHEST,
-	 1}};
+CHEST_METADATA chest_data = {
+	1000, NULL};
+
+OBJECT forest_object[] = {{{"chest", "A chest with shining coins"}, {5, 5}, OBJECT_TYPE_CHEST, 1, &chest_data}};
 /**
  * All the definition of the objects and location
  */

@@ -18,7 +18,7 @@ typedef struct _PLAYER_CTX
      * Inventories
      */
     PRAC_ARRAY *inventories;
-    int coins;
+    unsigned int coins;
 } PLAYER_CONTEXT;
 
 typedef struct _TAGGED_OBJECT
@@ -29,12 +29,19 @@ typedef struct _TAGGED_OBJECT
 
 #define OBJECT_TYPE_CHEST 1
 
+typedef struct _CHEST_METADATA
+{
+    unsigned int coin;
+    PRAC_ARRAY *objects;
+} CHEST_METADATA;
+
 typedef struct _OBJECT
 {
     TAGGED_OBJECT base;
     LOCATION_2D pos;
     unsigned short type;
     unsigned char valid;
+    void *metadata;
 } OBJECT;
 
 typedef struct _ITEM

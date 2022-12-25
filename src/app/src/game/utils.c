@@ -8,7 +8,7 @@ OBJECT *utils_FindObjectAt(OBJECT *list_head, size_t count, LOCATION_2D loc)
     }
     for (int i = 0; i < count; i++)
     {
-        OBJECT *ptr = list_head + count;
+        OBJECT *ptr = list_head + i;
         if (ptr->valid && !utils_Location2DCmp(loc, ptr->pos))
         {
             return ptr;

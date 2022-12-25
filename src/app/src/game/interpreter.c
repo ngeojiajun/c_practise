@@ -39,6 +39,7 @@ int game_InterpretCommand(STRING *cmd, PLAYER_CONTEXT *ctx)
 	DEFINE_ACTION("look ", action_Look)
 	DEFINE_ACTION("go ", action_Go)
 	DEFINE_ACTION("inventory ", action_Inventory)
+	DEFINE_ACTION("pick",action_Pick)
 	else if (string_RawEqualsInsensitive(cmd_string, "?"))
 	{
 		ui_PrintHelp();
